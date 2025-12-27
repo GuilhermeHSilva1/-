@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="home.css" rel="stylesheet" type="text/css">
+    <title>??</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+
+    <div class="lock-container" id="lockContainer">
+        <div class="lock" id="lock">🔒</div>
+        <div class="click-count" id="clickCount">Clique para desbloquear...</div>
+    </div>
+
+    <div class="messages-container" id="messagesContainer">
+        <div class="message active" id="message1">
+            <h2>🎉 Feliz Aniversário Jamille!</h2>
+            <p>Parece que alguém hoje ta fazendo 22 anos!!</p>
+            <p>Pode ser um presente bobo mas foi feito com o coração</p>
+            <p>Desejo tudo de bom pra você Jamille, você merece muito</p>
+            <p>Por varias dificuldades que ja passou e ainda esta passando</p>
+            <p>Força Guerreira!!</p>
+        </div>
+
+        <div class="message" id="message2">
+            <h2>Você é incrivel</h2>
+            <p>Sei que está passando por um momento ruim atualmente </p> 
+            <p>Mas mesmo nos dias dificeis</p> 
+            <p>Você continua sendo uma pessoa muito extraordinaria</p>
+            <p>Você irá superar todas as coisas ruins, se alguem falar que não, bom então...</p>
+        </div>
+
+        <div class="message" id="message3">
+            <h2>COM ESTA FACA</h2>
+            <p>com esta faca</p>
+            <p>coratei todos aqueles</p>
+            <p>que duvidarem de você</p>
+            <p>║\  </p>
+            <p>║▒\ </p>
+            <p>║▒▒\</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>║░▒║</p>
+            <p>▓▓▓▓</p>
+            <p>[█▓]</p>
+            <p>[█▓]</p>
+            <p>[█▓]</p>
+            <p>[█▓]</p>
+        </div>
+
+        <div class="message" id="message4">
+            <h2>Felicidades e tudo de bom</h2>
+            <p>Brincadeira a parte 😛</p>
+            <p>Que este ano você conquiste seus objetivos</p>
+            <p>E também que diga xó depressão</p>
+            <p>Bom depois de tudo isso</p>
+            <p>Aproveita bem seu dia Jamille!</p>
+            <p>De seu amigo: Toiço</p>
+        </div>
+    </div>
+        
+    <button class="nav-button" id="nextButton" style="display: none;">Próximo →</button>
+
+    <script>
+        let clickCount = 0;
+        let currentMessage = 1;
+        const totalMessages = 4;
+
+        const lock = document.getElementById('lock');
+        const lockContainer = document.getElementById('lockContainer');
+        const clickCountText = document.getElementById('clickCount');
+        const messagesContainer = document.getElementById('messagesContainer');
+        const nextButton = document.getElementById('nextButton');
+        const title = document.getElementById('title');
+
+        lockContainer.addEventListener('click', function() {
+            clickCount++;
+            lock.classList.add('shake');
+            
+            setTimeout(() => {
+                lock.classList.remove('shake');
+            }, 300);
+
+            if (clickCount === 1) {
+                clickCountText.textContent = 'Continue clicando...';
+            } else if (clickCount === 2) {
+                clickCountText.textContent = 'Mais uma vez';
+            } else if (clickCount === 3) {
+                lock.textContent = '🔓';
+                clickCountText.textContent = 'Desbloqueado!';
+                
+                setTimeout(() => {
+                    lockContainer.classList.add('unlocking');
+                    
+                    setTimeout(() => {
+                        lockContainer.style.display = 'none';
+                        title.textContent = '🎂 Parabéns! 🎂';
+                        document.title = 'Parabéns Jamille!!'
+                        messagesContainer.classList.add('active');
+                        nextButton.style.display = 'block'
+                    }, 1000);
+                }, 500);
+            }
+        });
+
+        nextButton.addEventListener('click', function() {
+            if (currentMessage < totalMessages) {
+                document.getElementById('message' + currentMessage).classList.remove('active');
+                currentMessage++;
+                document.getElementById('message' + currentMessage).classList.add('active');
+                
+                if (currentMessage === totalMessages) {
+                    nextButton.style.display = 'none';
+                }
+            } else {
+                messagesContainer.style.display = 'none';
+                title.style.display = 'none';
+                nextButton.style.display = 'none';
+                photosContainer.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

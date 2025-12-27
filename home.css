@@ -1,0 +1,211 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: black;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            position: absolute;
+            top: 40px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .lock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 1s ease-out;
+        }
+
+        .lock-container.unlocking {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lock {
+            font-size: 120px;
+            transition: transform 0.1s ease;
+        }
+
+        .lock.shake {
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            75% { transform: translateX(10px) rotate(5deg); }
+        }
+
+        .click-count {
+            margin-top: 20px;
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+
+        .messages-container {
+            display: none;
+            max-width: 700px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .messages-container.active {
+            display: block;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .message.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .message h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .message p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        #message3 {
+            margin-top: 50%;
+        }
+
+        .nav-button {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            border: 2px solid white;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== AJUSTES PARA CELULAR ===== */
+@media (max-width: 768px) {
+
+   body {
+        justify-content: center;
+        padding-top: 0;
+    }
+
+    .lock-container {
+        margin-top: 0;
+        height: 100vh;
+        justify-content: center;
+    }
+    .messages-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .messages-container.active {
+        display: flex;
+    }
+
+    .message {
+        width: 100%;
+        max-width: 90%;
+    }
+
+    h1 {
+        position: absolute;
+        top: 20px;
+        text-align: center;
+        font-size: 2em;
+        width: 100%;
+    }
+
+    .messages-container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .message h2 {
+        font-size: 1.8em;
+    }
+
+    .message p {
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+    #message3 {
+        margin-top: 10%;
+    }
+
+    .nav-button {
+        position: fixed;
+        bottom: 20px;
+        right: 50%;
+        transform: translateX(50%);
+        top: auto;
+    }
+
+    .nav-button:hover {
+        transform: translateX(50%) scale(1.05);
+    }
+
+    .lock {
+        font-size: 90px;
+    }
+}
+
